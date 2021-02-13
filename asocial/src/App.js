@@ -1,10 +1,23 @@
-
+import Login from './components/Login'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header'
+import { useStateValue } from './components/StateProvider'
 
 function App() {
+  const [{user}, dispatch] = useStateValue();
   return (
     <div className="App">
-      <h1>HELLO</h1>
+      {!user ? (
+        <Login />
+      ) : (
+        <>
+          <Header />
+
+        </>
+
+      )};
+     
     </div>
   );
 }
