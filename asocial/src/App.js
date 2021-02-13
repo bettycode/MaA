@@ -1,3 +1,5 @@
+import React from 'react'
+import  { BrowserRouter as Router,Switch, Route } from "react-router-dom";
 import Login from './components/Login'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,16 +10,22 @@ function App() {
   const [{user}, dispatch] = useStateValue();
   return (
     <div className="App">
-      {!user ? (
-        <Login />
-      ) : (
-        <>
-          <Header />
+      <Router>
+        <Switch>
+          {!user ? (
+            <Route exact path = "/Login">
+              <Login/>
+            </Route>  
+           ) : ( 
+            <>
+            <Route path = "/">
+              <Header />
+            </Route>
+            </>
 
-        </>
-
-      )};
-     
+           )}; 
+          </Switch>
+      </Router>
     </div>
   );
 }

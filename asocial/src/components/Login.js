@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link } from 'react-router-dom';
 import Loginheader from './Loginheader'
 import { auth, provider} from '../firebase'
 import { useStateValue } from './StateProvider'
@@ -20,7 +21,7 @@ const [state, dispatch] = useStateValue()
                 })
 
             }).catch(error => alert(error.message))
-        }
+    }
     return (
         <div className="loginPage">
             <Loginheader />
@@ -30,7 +31,9 @@ const [state, dispatch] = useStateValue()
                     <div className="col-md-4">
                         <p style={{textAlign:"center"}}>log in with google</p>
                         <div className="d-grid gap-2 col-6 mx-auto">
-                            <button className="btn btn-primary"style={{width: "150%"}} type="submit" onClick={signIn}>Button</button>
+                            <Link to = "/">
+                                <button className="btn btn-primary"style={{width: "150%"}} type="submit" onClick={signIn}>LogIn</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="col-md-4"></div>
