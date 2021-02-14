@@ -1,0 +1,13 @@
+div .test{
+    justify-content: space-between;
+}
+ul .test1{
+    position: relative;
+    right: -35%;
+    width: 200px;
+}
+ul li.test2{
+    color: black;
+    font-size: 1.1rem;
+    padding-right: 1rem;
+}

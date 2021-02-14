@@ -3,7 +3,7 @@ import  { BrowserRouter as Router,Switch, Route } from "react-router-dom";
 import Login from './components/Login'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Header'
+import Home from './components/Home'
 import { useStateValue } from './components/StateProvider'
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
            ) : ( 
             <>
             <Route path = "/">
-              <Header />
+              <Home />
             </Route>
             </>
 
