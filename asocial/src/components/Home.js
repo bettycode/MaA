@@ -1,6 +1,7 @@
 import React from 'react'
 // import {Link,useHistory } from 'react-router-dom';
 import Nav from './Nav'
+import Body from './Body'
 // import { useStateValue } from './StateProvider'
 // import Login from './Login'
 // import { auth} from '../firebase'
@@ -25,11 +26,7 @@ function Home() {
     return (
         <>
         <Nav />
-        {/* <div className="d-grid gap-2 col-6 mx-auto">
-         
-           <button className="btn btn-primary"style={{width: "150%"}} type="submit" onClick={signOut}>LogOut</button>
-        
-        </div> */}
+        <Body />
         
         </>
     )

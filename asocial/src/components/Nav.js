@@ -42,7 +42,7 @@ function Nav() {
                     <li class="nav-item test2">
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
-                    
+                   
                     </ul>
                     <button className="btn btn-primary"
                      style={{position: "relative",right:" -30%"}} 
