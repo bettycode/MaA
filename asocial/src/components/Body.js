@@ -23,7 +23,7 @@ function Body() {
                            <MessageSend />
                         </div>
                         <div className="row">
-                            <div className="col-md-11 post__box">
+                            <div className="col-md-8 post__box">
                             <Post 
                                   profilePic= "< Avatar />"
                                   message="hello Guys"

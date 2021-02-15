@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(cors())
 
 //db config
-const mongoURI = 'mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority';
+const mongoURI =process.env.MONGO_URL
 // connection for the images
 const connect1 = mongoose.createConnection(mongoURI,{
     useCreateIndex:true,
