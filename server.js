@@ -32,10 +32,9 @@ app.use(express.json());
 app.use(cors())
 
 //db config
-const MONGODB_URI = ""
 
 // connection for the images
-const connect1 = mongoose.createConnection(MONGODB_URI ,{
+const connect1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/posts" , {
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -90,7 +89,7 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 
 //connection for post
-mongoose.connect(MONGODB_URI,{
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/posts",{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
