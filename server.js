@@ -32,9 +32,10 @@ app.use(express.json());
 app.use(cors())
 
 //db config
+const MONGODB_URI = 'mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority' //fix heroku!!!!!!
 
 // connection for the images
-const connect1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/posts" , {
+const connect1 = mongoose.createConnection(MONGODB_URI ,{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -89,7 +90,7 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 
 //connection for post
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/posts",{
+mongoose.connect(MONGODB_URI,{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
