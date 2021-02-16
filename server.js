@@ -24,8 +24,7 @@ app.use(express.json());
 app.use(cors())
 
 //db config
-const MONGODB_URI ='mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority'
-
+const MONGODB_URI =
 // connection for the images
 const connect1 = mongoose.createConnection(MONGODB_URI ,{
     useCreateIndex:true,
