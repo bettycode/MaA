@@ -21,7 +21,19 @@ function Post({profilePic,imgName, username, timestamp, message}) {
                          <p>{message}</p>
                     </div>
                 {/* </div>     */}
-                    {/* image here */}
+                    {
+                        imgName ? (
+                            <div>
+                                <img src= {`http://localhost:8000/retrive/images/single?name=${imgName}`}/>
+                            </div>
+                        ) : (
+                                console.log('ERROR >>>>IMAGE NOT FOUND')
+                           )
+                    }
+
+
+
+
                 <div className="row post__options"> 
                     <div className="col-md-4 post__option">
                         <ThumbUpIcon />

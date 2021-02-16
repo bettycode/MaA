@@ -47,7 +47,7 @@ function Nav() {
                     <button className="btn btn-primary"
                      style={{position: "relative",right:" -30%"}} 
                      type="submit" onClick={signOut}>LogOut</button>
-                    <Avatar/>
+                    <Avatar src={user.photoURL}/>
                 </div>
             </div>    
         </nav>

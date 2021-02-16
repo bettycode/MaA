@@ -8,10 +8,10 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import pusher from 'pusher'
 import { promises } from 'fs'
-import mongoPost from './models/post.js'
-import { error } from 'console'
+import mongoPosts from './models/post.js'
 
-//storage
+
+//storage our image
 Grid.mongo = mongoose.mongo
 
 //app comfig
@@ -19,13 +19,15 @@ const app = express()
 const PORT = process.env.PORT ||8000
 
 // middlewheres
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors())
 
 //db config
-const mongoURI =process.env.MONGO_URL
+const MONGODB_URI ='mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority'
+
 // connection for the images
-const connect1 = mongoose.createConnection(mongoURI,{
+const connect1 = mongoose.createConnection(MONGODB_URI ,{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -41,7 +43,7 @@ connect1.once('open',() => {
 });
 
 const storage = new GridFsStorage({
-    url:mongoURI,
+    url:MONGODB_URI ,
     file:(req,file) => {
         return new Promise((resolve,reject)=>{
             const filename = `image-${Date.now()}${path.extname(file.originalname)}`
@@ -57,10 +59,10 @@ const storage = new GridFsStorage({
 
 //upload instance
 
-const upload = multer({storage});
+const upload = multer({ storage });
 
 //connection for post
-mongoose.connect(mongoURI,{
+mongoose.connect(MONGODB_URI,{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -76,19 +78,17 @@ app.post('/upload/post',(req,res) =>{
     const dbPost = req.body
 
     console.log(dbPost)
-    mongoPosts.creat(dbPost,(err,data) =>{
+    mongoPosts.create(dbPost, (err, data) =>{
         if(err){
-            res.status(500)
-            .send(err)
+            res.status(500).send(err)
         }else {
-            res.status(201)
-            .send(data)
+            res.status(201).send(data)
         }
     })
 })
 
 app.get('/retrive/posts',(req,res) => {
-    mongoPost.find((err,data) => {
+    mongoPosts.find((err,data) => {
        if(err) {
         res.status(500)
         .send(err)

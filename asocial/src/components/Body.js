@@ -1,11 +1,30 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import './Body.css'
 import Avatar from '@material-ui/core/Avatar'
 import MessageSend from './MessageSend';
 import Post from './Post';
-
+import pusher from 'pusher-js'
+import axios from '../axios'
+import db from '../firebase'
+import { useStateValue } from "./StateProvider";
 
 function Body() {
+    const [profilePic, setProfilePic] = useState('')
+    const [{user},dispatch] = useStateValue()
+    const [postData, setPostData] = useState([])
+
+    const syncBody = () =>{
+        axios.get('/retrive/posts')
+            .then((res) => {
+                console.log(res.data)
+                setPostData(res.data)
+                console.log(res.data)
+            })
+    }
+
+    useEffect(() => {
+        syncBody()
+    },[])
     return (
         <div className="container-fluid ">
             <div className="row">
@@ -14,8 +33,8 @@ function Body() {
                         {/* avatar place */}
                         <div className="container avatarc">
                             
-                            <Avatar className="acatar" style={{width:"100px",height:"100px",marginTop:"1.5rem",marginLeft:"10px"}}/>
-                            <h4>Sam Sam</h4>
+                            <Avatar  src={user.photoURL} className="acatar" style={{width:"100px",height:"100px",marginTop:"1.5rem",marginLeft:"10px"}}/>
+                            <h4>{user.displayName}</h4>
                         </div>
                 </div>
                 <div className="col-md-8">
@@ -24,13 +43,19 @@ function Body() {
                         </div>
                         <div className="row">
                             <div className="col-md-8 post__box">
-                            <Post 
-                                  profilePic= "< Avatar />"
-                                  message="hello Guys"
-                                  timestamp="1613298800"
-                                  imgName="imgName"
-                                  username="sam"
-                           />
+
+                            {postData.map((post) => (
+                                <Post
+                                key={post._id}
+                                message={post.text}
+                                timestamp={post.timestamp}
+                                username={post.user}
+                                imgName={post.imgName}
+                                profilePic={post.avatar}
+                                />
+                            ))}
+                            
+                        
                             </div>
                            
                         </div>
