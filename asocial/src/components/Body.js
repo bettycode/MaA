@@ -3,10 +3,14 @@ import './Body.css'
 import Avatar from '@material-ui/core/Avatar'
 import MessageSend from './MessageSend';
 import Post from './Post';
-import pusher from 'pusher-js'
+import Pusher from 'pusher-js'
 import axios from '../axios'
 import db from '../firebase'
 import { useStateValue } from "./StateProvider";
+
+const pusher = new Pusher('abe1e56f83b980b40655', {
+    cluster: 'us2'
+  });
 
 function Body() {
     const [profilePic, setProfilePic] = useState('')
@@ -21,6 +25,14 @@ function Body() {
                 console.log(res.data)
             })
     }
+
+
+    useEffect(() => {
+        const channel = pusher.subscribe('posts');
+        channel.bind('inserted', function(data) {
+            syncBody()
+        });
+    },[])
 
     useEffect(() => {
         syncBody()

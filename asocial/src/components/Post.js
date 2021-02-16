@@ -4,6 +4,7 @@ import Avatar from '@material-ui/core/Avatar'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp'
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline'
 import NearMeIcon from '@material-ui/icons/NearMe'
+import axios from '../axios';
 
 function Post({profilePic,imgName, username, timestamp, message}) {
     return (
@@ -24,7 +25,7 @@ function Post({profilePic,imgName, username, timestamp, message}) {
                     {
                         imgName ? (
                             <div>
-                                <img src= {`http://localhost:8000/retrive/images/single?name=${imgName}`}/>
+                                <img src= {`https://asocial-mysocial.herokuapp.com/retrive/images/single?name=${imgName}`}/>
                             </div>
                         ) : (
                                 console.log('ERROR >>>>IMAGE NOT FOUND')

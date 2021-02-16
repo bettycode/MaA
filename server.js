@@ -6,7 +6,7 @@ import GridFsStorage from 'multer-gridfs-storage'
 import Grid from 'gridfs-stream'
 import bodyParser from 'body-parser'
 import path from 'path'
-import pusher from 'pusher'
+import Pusher from 'pusher'
 import { promises } from 'fs'
 import mongoPosts from './models/post.js'
 
@@ -18,13 +18,21 @@ Grid.mongo = mongoose.mongo
 const app = express()
 const PORT = process.env.PORT ||8000
 
+const pusher = new Pusher({
+    appId: "1156581",
+    key: "abe1e56f83b980b40655",
+    secret: "7da250470429fe45b681",
+    cluster: "us2",
+    useTLS: true
+  });
+
 // middlewheres
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors())
 
 //db config
-const MONGODB_URI ='mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority'
+const MONGODB_URI = ""
 
 // connection for the images
 const connect1 = mongoose.createConnection(MONGODB_URI ,{
@@ -32,6 +40,26 @@ const connect1 = mongoose.createConnection(MONGODB_URI ,{
     useNewUrlParser:true,
     useUnifiedTopology:true
 });
+
+mongoose.connection.once("open", () => {
+    console.log("main: DB Connected");
+  
+    const changeStream = mongoose.connection.collection("posts").watch();
+  
+    changeStream.on("change", (change) => {
+      console.log(change);
+  
+      if (change.operationType === "insert") {
+        console.log("Triggering Pusher")
+  
+        pusher.trigger("posts", "inserted", {
+          change: change
+        });
+      } else {
+        console.log("Error triggering Pusher");
+      }
+    });
+  });
 
 let gfs  
 
