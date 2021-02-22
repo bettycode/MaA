@@ -5,9 +5,9 @@ import './Loginheader.css'
 function Loginheader() {
     return (
         <div className=" login-header">
-            <nav class="navbar navbar-light  "style={{background:"#18187f"}}>
+            <nav class="navbar navbar-light  ">
                 <div class="container-fluid">
-                    <h1 class="navbar-brand " style={{color:"whitesmoke"}}>Navbar</h1>
+                    <h1 class="navbar-brand "style={{fontSize:" xx-large"}} >ASOCIAL</h1>
                 </div>
             </nav>
             

@@ -19,11 +19,11 @@ const app = express()
 const PORT = process.env.PORT ||8000
 
 const pusher = new Pusher({
-    appId:  process.env.DB_APPID,
-    key: process.env.DB_KEY,
-    secret: process.env.DB_SECRET,
-    cluster: process.env.DB_CLUSTER,
-    useTLS: process.env.DB_USETLS
+    appId: "1156581",
+    key: "abe1e56f83b980b40655",
+    secret: "7da250470429fe45b681",
+    cluster: "us2",
+    useTLS: true
   });
  
   
@@ -131,6 +131,27 @@ app.get('/retrive/posts',(req,res) => {
            res.status(200)
            .send(data)
        }
+    })
+})
+//comment
+app.put('/comments',(req,res) =>{
+    const comment = {
+        text:req.body.comments,
+        postId:req.body._id
+    }
+    mongoPosts.findByIdAndUpdate(req.body._id,{
+        $push:{comments:comment}
+    },{
+        new:true
+    })
+    .populate("comments.postId","_id name")
+    .populate("postId","_id name")
+    .exec((err,result)=>{
+        if(err){
+            return res.status(422).json({error:err})
+        }else{
+            res.json(result)
+        }
     })
 })
 

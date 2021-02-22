@@ -1,7 +1,7 @@
 import React from 'react'
 import './Nav.css';
 import Avatar from '@material-ui/core/Avatar'
-import {Link,useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import { useStateValue } from './StateProvider'
 import { auth} from '../firebase'
 import { actionTypes } from './Reducer'
@@ -45,7 +45,7 @@ function Nav() {
                    
                     </ul>
                     <button className="btn btn-primary"
-                     style={{position: "relative",right:" -30%"}} 
+                     style={{position: "relative",right:" -25%"}} 
                      type="submit" onClick={signOut}>LogOut</button>
                     <Avatar src={user.photoURL}/>
                 </div>

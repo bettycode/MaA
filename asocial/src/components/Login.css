@@ -1,0 +1,21 @@
+
+
+.loginPage{
+background-image: url(../Image/pic5.jpg),linear-gradient(#0a0a0a, #0c0c0c);
+background-repeat: no-repeat;
+background-size: cover;
+
+
+}
+div.col-md-4.signin{
+    background:#ffffffad;
+    margin-top: 12%;
+    border: 1px solid  #ffffff05;
+    border-radius: 15px;
+    height: 300px;
+}
+.d-grid.gap-2.col-6.mx-auto{
+    position: relative;
+    top: 50%;
+    left: -2%;
+}
