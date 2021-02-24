@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import './Post.css'
 import Avatar from '@material-ui/core/Avatar'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp'
@@ -6,36 +6,50 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline'
 import NearMeIcon from '@material-ui/icons/NearMe'
 import axios from '../axios';
 import { useStateValue } from "./StateProvider";
+import Pusher from 'pusher-js'
+
+
 
 function Post({profilePic,imgName, username, timestamp, message,postId,key,comments}) {
     const [{user},dispatch] = useStateValue()
-    // const [input ,setInput] = useState('')
+    //const [data ,setData] = useState('')
     const [comment,setComment] = useState([])
 
     const postcomments =(e) =>{
+        console.dir(e)
         e.preventDefault()
         console.log('submitting')
-            const postData  = {
-                id:postId,
-                avatar:user.photoURL,
-                comment:comment
+            const postData = {
+                    text:comment,
+                    postId:postId,
+                   // avatar:user.photoURL,
+                   // Text:comment
+           
+               
               }
-            console.log(postData)
-            saveComment(postData)
+            console.log(postData )
+            saveComment(postData )
+            console.log(postData )
         
         
         setComment('')
      
     }
-    const saveComment = async(postData) => {
-        await axios.post('/comments', postData)
+    const saveComment = async(postData ) => {
+        console.log(postData )
+        setComment("")
+        await axios.put('/comments', postData )
         .then((res) =>{
             console.log(res.data)
-            setComment(res.data)
+            setComment("")
             console.log(res.data)
            
         })
+      
     }
+   
+
+   
     return (
         <div className="col-md-8 post__box">
            
@@ -122,12 +136,29 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
                  </form>
                 </div>
             </div>
-            
-            <div className="post__comment">
-                <p>{comments}</p>
-                        
-            </div>
            
+            <div className="post__comment">
+         
+                {comments.map((comments) =>(
+                <>
+                    <div className="row">
+                        <div className="col-md-2">
+                          <div className="com1">
+                            <Avatar  src={user.photoURL}/>
+                            </div>
+                        </div>
+                        <div className="col-md-8">
+                        
+                            <p className="colp">{comments.text}</p> 
+                        </div>  
+                    </div>   
+                </>   
+              ))
+
+                }
+               
+            
+            </div>
         </div>
     );
 }

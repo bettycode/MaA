@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link } from 'react-router-dom';
 import './Nav.css';
 import Avatar from '@material-ui/core/Avatar'
 import {useHistory } from 'react-router-dom';
@@ -27,20 +28,35 @@ function Nav() {
     return (
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
              <div className ="container">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <Link
+                    to="/"
+                     className="navbar-brand">
+                    Navbar
+                </Link>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse test" id="navbarNavDropdown">
-                    <ul class="navbar-nav test1">
-                    <li class="nav-item active test2">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <div className="collapse navbar-collapse test" id="navbarNavDropdown">
+                    <ul className="navbar-nav test1">
+                    <li className="nav-item active test2">
+                        <Link 
+                            to="/"
+                                className={ window.location.pathname === "/" ? "nav-link active" :"nav-link" } >
+                                HOME 
+                        </Link>
                     </li>
-                    <li class="nav-item test2">
-                        <a class="nav-link" href="#">Features</a>
+                    <li className="nav-item test2">
+                        <Link 
+                            to="/MESSAGE" 
+                            className={ window.location.pathname === "/MESSAGE" ? "nav-link active": "nav-link"} >
+                                MESSAGE
+                        </Link>
                     </li>
-                    <li class="nav-item test2">
-                        <a class="nav-link" href="#">Pricing</a>
+                    <li className="nav-item test2">
+                    <Link 
+                            to="/BLOG" className={ window.location.pathname === "/BLOG" ? "nav-link active": "nav-link"} >
+                                BLOG
+                        </Link>
                     </li>
                    
                     </ul>

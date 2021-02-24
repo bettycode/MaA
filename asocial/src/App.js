@@ -4,8 +4,9 @@ import Login from './components/Login'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home'
+import Blog from './components/Blog'
+import F from './components/F'
 import { useStateValue } from './components/StateProvider'
-
 function App() {
   const [{user}, dispatch] = useStateValue();
   return (
@@ -13,19 +14,25 @@ function App() {
       <Router>
         <Switch>
           {!user ? (
-            <Route exact path = "/Login">
+            <Route path = "/Login">
               <Login/>
+              <F />
             </Route>  
-           ) : ( 
+          ) : (  
             <>
-            <Route path = "/">
+            <Route exact path = "/">
               <Home />
-            </Route>
+            </Route>  
+            <Route exact path = "/BLOG" >
+             <Blog />
+             </Route> 
+             <F />
             </>
-
-           )}; 
+           )};  
+            
           </Switch>
       </Router>
+     
     </div>
   );
 }

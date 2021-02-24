@@ -22,7 +22,7 @@ function Body() {
   
   
 
-    const syncBody = () =>{
+const syncBody = () =>{
         axios.get('/retrive/posts')
             .then((res) => {
                 console.log(res.data)
@@ -39,6 +39,7 @@ function Body() {
         const channel = pusher.subscribe('posts');
         channel.bind('inserted', function(data) {
             syncBody()
+            console.log(syncBody())
           
         });
     },[])
@@ -72,7 +73,7 @@ function Body() {
                                 postId={post._id}
                                 postUserId={post.uid}
                                 message={post.text}                               
-                                comments={post.comment}
+                                comments={post.comments}
                                 timestamp={post.timestamp}
                                 username={post.user}
                                 imgName={post.imgName}
@@ -80,7 +81,6 @@ function Body() {
                               
                                 />
                             ))}
-                          
                            
                         </div>
                       
@@ -92,7 +92,7 @@ function Body() {
 
         </div>
         <div>
-        <F />
+       
         </div>
         </>
     )

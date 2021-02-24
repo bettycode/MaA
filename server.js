@@ -59,11 +59,19 @@ mongoose.connection.once("open", () => {
         pusher.trigger("posts", "inserted", {
           change: change
         });
-      } else {
+      } else if(change.operationType === "update") {
+          console.log( "this is the comment" , change.updateDescription.updatedFields.comments)
+        pusher.trigger("posts", "inserted", {
+            change: change.updateDescription.updatedFields.comments
+          });
+      }
+      else {
         console.log("Error triggering Pusher");
       }
     });
   });
+ 
+
 
 let gfs  
 
@@ -135,22 +143,39 @@ app.get('/retrive/posts',(req,res) => {
 })
 //comment
 app.put('/comments',(req,res) =>{
+    //console.dir( req.body)
     const comment = {
-        text:req.body.comments,
-        postId:req.body._id
+        text:req.body.text,
+        PostedBy:req.body._id
+
     }
-    mongoPosts.findByIdAndUpdate(req.body._id,{
+    //console.log("the is the comment" + comment.text)
+    mongoPosts.findByIdAndUpdate(req.body.postId,
+        {
         $push:{comments:comment}
-    },{
-        new:true
+        },{
+        new:true,returnOriginal:false
     })
-    .populate("comments.postId","_id name")
-    .populate("postId","_id name")
-    .exec((err,result)=>{
+    .populate("comments.PostedBy","_id name")
+    //.populate("comments.Text","comments")
+    .populate("PostedBy","_id name")
+    .exec((err,post)=>{
+        console.log(post)
         if(err){
             return res.status(422).json({error:err})
         }else{
-            res.json(result)
+            res.json({
+                key:post._id,
+                postId:post._id,
+                PostedBy:post.PostedBy,
+                postUserId:post.uid,
+                message:post.text,                              
+                comments:post.comments,
+                timestamp:post.timestamp,
+                username:post.user,
+                imgName:post.imgName,
+                profilePic:post.avatar
+            })
         }
     })
 })

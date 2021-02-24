@@ -6,13 +6,14 @@ const post = mongoose.Schema({
     text:String,
     comments:[
         {
-            Text:String,
-            postId:{
+            text:String,
+            PostedBy:{
                 type:ObjectId,
             }
             
         },
     ],
+    
     avatar:String,
     timestamp:String,
     country:String

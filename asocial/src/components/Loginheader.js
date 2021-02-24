@@ -7,7 +7,7 @@ function Loginheader() {
         <div className=" login-header">
             <nav class="navbar navbar-light  ">
                 <div class="container-fluid">
-                    <h1 class="navbar-brand "style={{fontSize:" xx-large"}} >ASOCIAL</h1>
+                    <h1 class="navbar-brand "style={{fontSize:" xx-large", marginTop: "1rem"}} >ASOCIAL</h1>
                 </div>
             </nav>
             
