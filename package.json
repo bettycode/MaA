@@ -8,11 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "asocial": "cd client && npm run start",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build",
+    "asocial": "cd asocial && npm run start",
+    "install": "cd asocial && npm install",
+    "build": "cd asocial && npm run build",
     "heroku-postbuild": "npm run build"
-
   },
   "repository": {
     "type": "git",
@@ -25,7 +24,6 @@
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.7"
   },
-
   "bugs": {
     "url": "https://github.com/bettycode/MaA/issues"
   },
