@@ -68,7 +68,7 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
                     {
                         imgName ? (
                             <div className=" imgName">
-                                <img src= {`http://localhost:8000/retrive/images/single?name=${imgName}` } alt=''/>
+                                <img src= {`https://asocial-mysocial.herokuapp.com/retrive/images/single?name=${imgName}` } alt=''/>
                             </div>
                         ) : (
                                 console.log('ERROR >>>>IMAGE NOT FOUND')
