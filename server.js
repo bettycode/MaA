@@ -44,9 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors())
 //
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join("asocial/build")));
-  }
+
 //db config
 //const MONGODB_URI = 'mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority' //fix heroku!!!!!!
 
@@ -210,10 +208,15 @@ app.get ('/retrive/images/single', (req, res) =>{
     })
 })
 //
+if (process.env.NODE_ENV === "production") {
 
-//   app.get('*', (req, res) => {
-// 	res.sendFile(path.join('asocial/build', 'index.html'));
-// });
+    app.use(express.static("asocial/build"));
 
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname,'asocial','build', 'index.html'));
+     });
+}
+
+ 
 //listen port 
 app.listen(PORT,() =>console.log(`listening on localhost:${PORT}`))
