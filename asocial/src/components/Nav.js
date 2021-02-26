@@ -20,7 +20,7 @@ function Nav() {
                     type: actionTypes.LOGOUT_SUCCESS,
                     user:undefined
                 })
-                history.push("/Login");
+                history.push("/");//Login
                // console.log(dispatch)
             }).catch(error => alert(error.message))
 
@@ -29,7 +29,7 @@ function Nav() {
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
              <div className ="container">
                 <Link
-                    to="/"
+                    to="/HOME"
                      className="navbar-brand">
                     Navbar
                 </Link>
@@ -40,8 +40,8 @@ function Nav() {
                     <ul className="navbar-nav test1">
                     <li className="nav-item active test2">
                         <Link 
-                            to="/"
-                                className={ window.location.pathname === "/" ? "nav-link active" :"nav-link" } >
+                            to="/HOME"
+                                className={ window.location.pathname === "/HOME" ? "nav-link active" :"nav-link" } >
                                 HOME 
                         </Link>
                     </li>

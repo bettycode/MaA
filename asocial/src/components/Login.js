@@ -46,7 +46,7 @@ const [state, dispatch] = useStateValue()
                        
                         <div className="d-grid gap-2 col-6 mx-auto">
                             <div className ="signup">
-                            <Link to = "/">
+                            <Link to = "/HOME">
                            
                                 <button className="btn btn-outline-primary"style={{width: "150%",position: "relative",left: "-20%",color:"green",borderColor: "green"}} 
                                 type="submit" onClick={signIn}>  <img src={pic} style={{height: "40px",paddingRight: "5px"}}></img>Sign Up in with Google</button>

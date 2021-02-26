@@ -15,13 +15,13 @@ function App() {
       <Router>
         <Switch>
           {!user ? (
-            <Route path = "/Login">
+            <Route path = "/">
               <Login/>
               
             </Route>  
           ) : (  
             <>
-            <Route exact path = "/">
+            <Route exact path = "/HOME">
               <Home />
             </Route>  
             <Route exact path = "/BLOG" >
