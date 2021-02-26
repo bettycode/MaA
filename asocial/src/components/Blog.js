@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from './Nav'
-import F from './F'
+
 
 function Blog() {
     return (
@@ -9,7 +9,7 @@ function Blog() {
         <Nav />
       
         
-        <F />
+      
        
         </div>
     )

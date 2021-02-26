@@ -1,3 +1,6 @@
+import dotenv from "dotenv"
+dotenv.config()
+console.log(process.env.MONGODB_URI)
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
@@ -11,6 +14,7 @@ import { promises } from 'fs'
 import mongoPosts from './models/post.js'
 
 
+
 //storage our image
 Grid.mongo = mongoose.mongo
 
@@ -19,11 +23,16 @@ const app = express()
 const PORT = process.env.PORT ||8000
 
 const pusher = new Pusher({
-    appId: "1156581",
-    key: "abe1e56f83b980b40655",
-    secret: "7da250470429fe45b681",
-    cluster: "us2",
-    useTLS: true
+    // appId: "1156581",
+    // key: "abe1e56f83b980b40655",
+    // secret: "7da250470429fe45b681",
+    // cluster: "us2",
+    // useTLS: true
+    appId:process.env.PUSHER_APP_ID,
+    key: process.env.PUSHER_APP_KEY,
+    secret: process.env.PUSHER_APP_SECRET,
+    cluster: process.env.PUSHER_APP_CLUSTER,
+    useTLS: process.env.PUSHER_APP_USETLS
   });
  
   
@@ -36,10 +45,10 @@ app.use(express.json());
 app.use(cors())
 
 //db config
-const MONGODB_URI = 'mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority' //fix heroku!!!!!!
+//const MONGODB_URI = 'mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority' //fix heroku!!!!!!
 
 // connection for the images
-const connect1 = mongoose.createConnection(MONGODB_URI ,{
+const connect1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/posts",{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -83,7 +92,7 @@ connect1.once('open',() => {
 });
 
 const storage = new GridFsStorage({
-    url:MONGODB_URI ,
+    url:process.env.MONGODB_URI ,
     file:(req,file) => {
         return new Promise((resolve,reject)=>{
             const filename = `image-${Date.now()}${path.extname(file.originalname)}`
@@ -102,7 +111,7 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 
 //connection for post
-mongoose.connect(MONGODB_URI,{
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/posts",{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true

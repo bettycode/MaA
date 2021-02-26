@@ -5,6 +5,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home'
 import Blog from './components/Blog'
+import Message from './components/Message'
 import F from './components/F'
 import { useStateValue } from './components/StateProvider'
 function App() {
@@ -16,7 +17,7 @@ function App() {
           {!user ? (
             <Route path = "/Login">
               <Login/>
-              <F />
+              
             </Route>  
           ) : (  
             <>
@@ -25,6 +26,9 @@ function App() {
             </Route>  
             <Route exact path = "/BLOG" >
              <Blog />
+             </Route> 
+             <Route exact path = "/MESSAGE" >
+             <Message />
              </Route> 
              <F />
             </>

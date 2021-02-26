@@ -144,7 +144,8 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
                     <div className="row">
                         <div className="col-md-2">
                           <div className="com1">
-                            <Avatar  src={user.photoURL}/>
+                            <Avatar  src={profilePic}/>
+                            <p > {key}</p>
                             </div>
                         </div>
                         <div className="col-md-8">
