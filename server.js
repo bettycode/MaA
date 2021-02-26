@@ -211,9 +211,9 @@ app.get ('/retrive/images/single', (req, res) =>{
 })
 //
 
-  app.get('*', (req, res) => {
-	res.sendFile(path.join('asocial/build', 'index.html'));
-});
+//   app.get('*', (req, res) => {
+// 	res.sendFile(path.join('asocial/build', 'index.html'));
+// });
 
 //listen port 
 app.listen(PORT,() =>console.log(`listening on localhost:${PORT}`))
