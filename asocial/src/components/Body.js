@@ -3,12 +3,11 @@ import './Body.css'
 import Avatar from '@material-ui/core/Avatar'
 import MessageSend from './MessageSend';
 import Post from './Post';
-import F from './F'
 import Pusher from 'pusher-js'
 import axios from '../axios'
 import db from '../firebase'
 import { useStateValue } from "./StateProvider";
-import Footer from './F';
+
 
 const pusher = new Pusher('abe1e56f83b980b40655', {
     cluster: 'us2'
@@ -46,7 +45,7 @@ const syncBody = () =>{
 
     useEffect(() => {
         syncBody()
-       
+        console.log(syncBody())
     },[])
     return (
         <>

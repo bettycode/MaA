@@ -6,6 +6,7 @@ import {useHistory } from 'react-router-dom';
 import { useStateValue } from './StateProvider'
 import { auth} from '../firebase'
 import { actionTypes } from './Reducer'
+import pic2 from '../Image/pic2.png'
 
 
 function Nav() {
@@ -26,12 +27,12 @@ function Nav() {
 
     }
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light back">
              <div className ="container">
                 <Link
                     to="/HOME"
                      className="navbar-brand">
-                    Navbar
+                     <img src={pic2} alt="img" style={{width:"90px"}}></img>
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -60,8 +61,9 @@ function Nav() {
                     </li>
                    
                     </ul>
-                    <button className="btn btn-primary"
-                     style={{position: "relative",right:" -25%"}} 
+                    <button className="btn btn-outline-primary"
+                     style={{position: "relative",right:" -25%",color: "green",
+                     borderColor: "green"}} 
                      type="submit" onClick={signOut}>LogOut</button>
                     <Avatar src={user.photoURL}/>
                 </div>

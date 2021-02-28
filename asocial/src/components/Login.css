@@ -4,19 +4,21 @@
 background-image: url(../Image/pic11.jpg),linear-gradient(#0a0a0a, #0c0c0c);
 background-repeat: no-repeat;
 background-size: cover;
-height: 500px;
+height: 550px;
 
 }
 div.col-md-4.signin{
     background:#ffffffdc;
    
-    border: 1px solid  #ffffff05;
+    border: 1px solid rgba(247, 248, 247, 0);
     border-radius: 15px;
     height: 300px;
+    box-shadow: inset 20px 20px 60px #999999,
+            inset -20px -20px 60px #ffffff;
 }
 .d-grid.gap-2.col-6.mx-auto{
     position: relative;
-    top: 30%;
+    top: 25%;
     left: -2%;
 }
 div.logo{
@@ -24,13 +26,13 @@ div.logo{
     top: 20%;
     left: -2%;
 }
-.section1{
+/* .section1{
     width: 60px;
     transform: translateX(250%);
     background: #ddc83482;
     padding: 1rem;
     border-radius: 180px;
-}
+} */
 .section01{
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -44,7 +46,6 @@ div.logo{
     padding: 10px;
 }
 .imgsocial img{
-    width: 400px;
-    height: 350px;
+    width: 60%;
     margin-bottom: 2rem;
 }

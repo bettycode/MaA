@@ -16,7 +16,10 @@ const post = mongoose.Schema({
     
     avatar:String,
     timestamp:String,
-    country:String
+    country:String,
+    PostedBy:{
+        type:ObjectId,
+    }
 })
 
 export default mongoose.model('posts',post)

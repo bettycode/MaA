@@ -1,17 +1,19 @@
 import dotenv from "dotenv"
 dotenv.config()
-console.log(process.env.MONGODB_URI)
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import multer from 'multer'
 import GridFsStorage from 'multer-gridfs-storage'
 import Grid from 'gridfs-stream'
-import bodyParser from 'body-parser'
+import bodyParser, { json } from 'body-parser'
 import path from 'path'
 import Pusher from 'pusher'
 import { promises } from 'fs'
 import mongoPosts from './models/post.js'
+import Blog from './models/blog.js'
+import { title } from "process"
+
 
 
 
@@ -23,16 +25,16 @@ const app = express()
 const PORT = process.env.PORT ||8000
 
 const pusher = new Pusher({
-    // appId: "1156581",
-    // key: "abe1e56f83b980b40655",
-    // secret: "7da250470429fe45b681",
-    // cluster: "us2",
-    // useTLS: true
-    appId:process.env.PUSHER_APP_ID,
-    key: process.env.PUSHER_APP_KEY,
-    secret: process.env.PUSHER_APP_SECRET,
-    cluster: process.env.PUSHER_APP_CLUSTER,
-    useTLS: process.env.PUSHER_APP_USETLS
+    appId: "1156581",
+    key: "abe1e56f83b980b40655",
+    secret: "7da250470429fe45b681",
+    cluster: "us2",
+    useTLS: true
+    // appId:process.env.PUSHER_APP_ID,
+    // key:process.env.PUSHER_APP_KEY,
+    // secret:process.env.PUSHER_APP_SECRET,
+    // cluster:process.env.PUSHER_APP_CLUSTER,
+    // useTLS:process.env.PUSHER_APP_USETLS
   });
  
   
@@ -46,7 +48,7 @@ app.use(cors())
 //
 
 //db config
-//const MONGODB_URI = 'mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority' //fix heroku!!!!!!
+const MONGODB_URI= 'mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority' //fix heroku!!!!!!
 
 // connection for the images
 const connect1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/posts",{
@@ -117,6 +119,13 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/posts",{
     useNewUrlParser:true,
     useUnifiedTopology:true
 })
+
+//connection for blog
+mongoose.connect(MONGODB_URI || "mongodb://localhost/blogs",{
+    useCreateIndex:true,
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+})
 //api routs
 app.get('/',(req,res) => res.status(200).send("hello hello"));
 
@@ -157,7 +166,6 @@ app.put('/comments',(req,res) =>{
     const comment = {
         text:req.body.text,
         PostedBy:req.body._id
-
     }
     //console.log("the is the comment" + comment.text)
     mongoPosts.findByIdAndUpdate(req.body.postId,
@@ -208,6 +216,87 @@ app.get ('/retrive/images/single', (req, res) =>{
     })
 })
 //
+//blog api
+app.get("/blog/test", (req, res) => res.json({ msg: "Posts Works" }));
+
+app.get('/blog',(req,res) =>{
+    Blog.find((err,data) => {
+        if(err) {
+         res.status(500)
+         .send(err)
+        }else{
+            data.sort((b,a) =>{
+                return a.timestamp - b.timestamp;
+            })
+            res.status(200)
+            .send(data)
+        }
+    })  
+})
+//
+app.post('/blog/add',(req,res) =>{
+    //const dbPost = req.body
+    const blog = {
+        title: req.body.title,
+        article:req.body.article,
+        country:req.body.country,
+        author:req.body.author
+    }
+    // console.log(dbPost)
+    Blog.create(blog   ,(err, data) =>{
+        if(err){
+            res.status(500).send(err)
+        }else {
+            res.status(201).send(data)
+        }
+    })
+   
+})
+//
+app.get('/blog/:id',(req,res) =>{
+    console.log(req.params.id);
+    const dbPost = req.params.id;
+    console.log(dbPost)
+    Blog.findById(dbPost,(err, data)=>{
+        if(err){
+            res.status(500).send(err)
+        }else {
+            res.status(201).send(data)
+        }
+    })
+      
+})
+//
+//
+app.put('/blog/:id',(req,res) =>{
+  //console.log(res.body)
+    Blog.findByIdAndUpdate(req.params.id)
+        .then(blog =>{
+            blog.title = req.body.title;
+            blog.article=req.body.article;
+            blog.country=req.body.country;
+            blog.author=req.body.author;
+
+            blog
+                .save()
+                .then(()=>res.json("the blog is updated"))
+                .catch(err=>res.status(400).json(`Error:${err}`))
+        })
+        .catch(err=>res.status(400).json(`Error:${err}`))
+   
+})
+//
+//
+app.delete('/blog/:id',(req,res) =>{
+  
+    Blog.findByIdAndDelete( req.params.id)
+        .then(()=>res.json("The bdlog is article is deleted"))
+        .catch(err=>res.status(400).json(`Error:${err}`))
+})
+//
+
+
+
 if (process.env.NODE_ENV === "production") {
 
     app.use(express.static("asocial/build"));

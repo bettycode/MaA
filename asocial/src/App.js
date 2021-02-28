@@ -8,8 +8,12 @@ import Blog from './components/Blog'
 import Message from './components/Message'
 import F from './components/F'
 import { useStateValue } from './components/StateProvider'
+
+
 function App() {
   const [{user}, dispatch] = useStateValue();
+  
+         
   return (
     <div className="App">
       <Router>
@@ -25,7 +29,7 @@ function App() {
               <Home />
             </Route>  
             <Route exact path = "/BLOG" >
-             <Blog />
+            <Blog/>
              </Route> 
              <Route exact path = "/MESSAGE" >
              <Message />
