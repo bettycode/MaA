@@ -7,6 +7,7 @@ import NearMeIcon from '@material-ui/icons/NearMe'
 import axios from '../axios';
 import { useStateValue } from "./StateProvider";
 import Pusher from 'pusher-js'
+import Widget from './Widget';
 
 
 
@@ -51,7 +52,8 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
 
    
     return (
-        <div className="col-md-8 post__box">
+        <>
+        <div className="col-md-12 post__box">
            
                 {/* <div className="row"> */}
                     <div className="post__top">
@@ -160,7 +162,10 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
                
             
             </div>
+          
         </div>
+        
+      </>
     );
 }
 

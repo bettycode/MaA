@@ -1,40 +1,93 @@
-import React from 'react'
+import React,{useState} from 'react'
+import Nav from './Nav'
+import axios from '../axios'
 
 function Addblog() {
+    const [title,setTitle] = useState("")
+    const [country,setCountry] = useState("")
+    const [author,setAuthor] = useState("")
+    const [article,setrArticle] = useState("")
+
+
+    const hundleSubmit =(e)  => {
+        e.preventDefault();
+
+        const blogs ={
+            title:title,
+            country:country,
+            author: author,
+            article:article,
+            timestamp: Date.now()
+        };
+
+        setTitle("")
+        setCountry("")
+        setAuthor("")
+        setrArticle("")
+
+        axios.post("/blog/add",blogs)
+            .then(res => console.log(res.data))
+            .catch(err =>{
+                console.log(err)
+            })
+    }
+
   return (
     <div>
-       <form  onSubmit={handleFormSubmit }>
+           <Nav />
+        <div className="container">
+            <div className="row addblog" style={{marginTop: "2rem" ,paddingTop: "2rem",marginBottom:"2rem",paddingBottom:"2rem"}}>
+                <div className="col-md-3">
+                
+                </div>
+                <div className="col-md-6">
+                    <div className="addtitle" style={{marginBottom:"2rem",fontFamily:"monospace",fontWeight:"500"}}>
+                        <h2 style={{fontWeight: "600", color: "#043504d1"}}>Add New Blog</h2>
+                    </div>
+                    <form onSubmit={hundleSubmit} encType="multipart/form-data" >
                         <div className="form-group">
+                            <label htmlFor="title">Title</label>
                             <input type="text" 
                             className="form-control" 
-                            // value={}
-                            // onChange={(e) =>setFormObject(e.target.value)}
+                             value={title}
+                             onChange={(e) =>setTitle(e.target.value)}
                             />
                         </div>
                         <div className="form-group">
+                            <label htmlFor="country">Country</label>
+                            <input type="text" 
+                            className="form-control" 
+                             value={country}
+                             onChange={(e) =>setCountry(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="author">Author Name</label>
                             <input type="text" 
                             className ="form-control"
-                            value={ blogs}
-                            // onChange={(e) =>setFormObject(e.target.value)}
+                            value={author}
+                             onChange={(e) =>setAuthor(e.target.value)}
                             />
                         </div>
                         <div className="form-group">
+                            <label htmlFor="article">Article</label>
                             <textarea className="form-control"  
                             rows="5"
                             type="text"
-                            // onChange={(e) =>setFormObject(e.target.value)}
-                            value={blogs}
+                            value={article}
+                             onChange={(e) =>setrArticle(e.target.value)}
+                           
                             ></textarea>
                         </div>
-                        <button
-                        style={{ height: "0",
-                            width: "0",
-                            backgroundColor: "transparent",
-                            color: "transparent",
-                            border: "none"}}
-                       
-                        type="submit">hidden </button> 
+                        <button type="submit" className="btn btn-primary"style={{background:"green",border: "green"}}>Submit</button> 
                     </form>
+            
+                </div>
+            
+            </div>
+
+        </div>
+      
     </div>
   )
 }

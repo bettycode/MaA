@@ -7,6 +7,9 @@ import Pusher from 'pusher-js'
 import axios from '../axios'
 import db from '../firebase'
 import { useStateValue } from "./StateProvider";
+import Widget from './Widget';
+import {Link } from 'react-router-dom';
+
 
 
 const pusher = new Pusher('abe1e56f83b980b40655', {
@@ -59,11 +62,23 @@ const syncBody = () =>{
                             <Avatar  src={user.photoURL} className="acatar" style={{width:"100px",height:"100px",marginTop:"1.5rem",marginLeft:"10px"}}/>
                             <h4>{user.displayName}</h4>
                         </div>
+                        <div className="row">
+                            <div className="col-md-8 aside" style={{color:"black",fontWeight:"500"}}>
+                            <Link 
+                                to="/AddBlog"
+                                className={ window.location.pathname === "/HOME" ? "nav-link active aside1" :"nav-link"  } style={{color:"black",fontWeight:"500"}} >
+                                    Add Blog 
+                            </Link>
+                            <p className="asideLinks">community</p>
+                            <p className="asideLinks">About</p>
+                            <p className="asideLinks">Blogs</p>
+                            </div>
+                         </div>
                 </div>
-                <div className="col-md-9">
+                <div className="col-md-5">
                         <div className= "row">
                            <MessageSend />
-                        </div>
+                        </div> 
                         <div className="row">
                       
                             {postData.map((post) => (
@@ -82,17 +97,20 @@ const syncBody = () =>{
                             ))}
                            
                         </div>
-                      
+                       
                 </div>
+                <div className="col-md-4">
+                            <Widget />
+
+                        </div>
             
                
             </div>
            
+           
 
         </div>
-        <div>
        
-        </div>
         </>
     )
 }

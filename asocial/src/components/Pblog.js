@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Pblog({key,postId , postUserId,title,article, country ,author,username,imgName,profilePic}) {
+function Pblog({key,postId , postUserId,title,article, country ,author,username,imgName,profilePic,timestamp}) {
     return (
         <div>
               <div className="col-md-12">
@@ -11,6 +11,7 @@ function Pblog({key,postId , postUserId,title,article, country ,author,username,
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">{article}</p>
                     <p className="card-text">{author} {country}</p>
+                    <p>{new Date(parseInt(timestamp)).toUTCString()}</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
                 </div>

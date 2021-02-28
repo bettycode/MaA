@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Blog from './components/Blog'
 import Message from './components/Message'
 import F from './components/F'
+import Addblog from './components/Addblog'
 import { useStateValue } from './components/StateProvider'
 
 
@@ -33,6 +34,9 @@ function App() {
              </Route> 
              <Route exact path = "/MESSAGE" >
              <Message />
+             </Route> 
+             <Route exact path = "/AddBlog" >
+             <Addblog />
              </Route> 
              <F />
             </>

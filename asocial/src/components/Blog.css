@@ -1,0 +1,12 @@
+.jumbotron.jumbotron-fluid{
+    
+    background-image: url(../Image/pic12.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
+
+.blogp h2{
+    font-family: 'Niconne', cursive;
+    color: wheat;
+}

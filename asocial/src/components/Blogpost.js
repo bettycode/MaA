@@ -1,7 +1,11 @@
 import React, { useState, useEffect }  from 'react'
+import './Blog.css'
 import axios from '../axios'
 import { useStateValue } from "./StateProvider";
 import Pblog from './Pblog'
+import pic0 from '../Image/pic0.gif'
+import {Link } from 'react-router-dom';
+
 
 function Blogpost() {
     const [{user},dispatch] = useStateValue()
@@ -34,11 +38,11 @@ function Blogpost() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12" >
-                        <div class="jumbotron jumbotron-fluid" style={{textAlign: "center", marginTop: "1rem"}}>
-                            <div class="container">
-                                <h4>welcome {user.displayName}</h4>
-                                <p>comming soon</p>
+                        <div className="jumbotron jumbotron-fluid " style={{textAlign: "center", marginTop: "1rem"}}>
+                            <div className="container  blogp">
+                                <h2>Welcome {user.displayName}</h2>
                             </div>
+                          
                         </div>
                         
                     </div>
@@ -50,23 +54,26 @@ function Blogpost() {
                            <p>title goes here</p>
                         </div>
                     </div>
-                    <div className="col-md-9">
+                    <div className="col-md-9" style={{margin:"3rem 0"}} >
                           
-                        {blogs.map((blog)=> (
+                        {!blogs.length ? (
+                        <img src={pic0} alt="loading..."style={{width:"6rem",display:"block",margin:"0 auto"}}/>
+                        ):(
+                        blogs.map((blog)=> (
                             <Pblog 
-                        // key={blog._id}
-                        // postId={blog._id}
-                        // postUserId={blog.uid}
+                         key={blog._id}
                         title={blog.title}
                         article ={blog.article}
                         country={blog.country}
                         author={blog.author}
+                        timestamp={blog.timestamp}
                         // username={blog.user}
                         // imgName={blog.imgName}
                         // profilePic={blog.avatar}
-                            />        
+                            />  
+                        )      
                         ))}
-                      
+                        
                            
                     </div>
 

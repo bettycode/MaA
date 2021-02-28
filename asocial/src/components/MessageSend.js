@@ -79,7 +79,7 @@ function MessageSend() {
     }
 
     return (
-        <div className="col-md-8  messageSender">
+        <div className="col-md-12  messageSender">
             <div className="row" style={{borderBottom:" 1px solid #eff2f5", marginRight:"0", marginLeft:"0"}}>
                 <div className="col-md-2">
                     <div className="m__top">

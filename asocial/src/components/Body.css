@@ -7,3 +7,22 @@ h4{
     margin-top: 15px;
     padding-left: 8px;
 }
+.aside{
+    margin-top: 1rem;
+    /* background: white; */
+    margin-left: 3rem;
+    border-radius: 10px;
+    height: 400px;
+    padding: 1rem;
+    box-shadow: 0px 5px 7px -7px rgb(0 0 0 / 75%);
+}
+.asideLinks{
+    padding-left: 16px;
+  
+}
+.asideLinks:hover{
+    background: honeydew;
+}
+.nav-link.active.aside1:hover{
+    background: honeydew;
+} 

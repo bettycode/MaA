@@ -4,14 +4,14 @@ import Body from './Body'
 
 
 
+
 function Home() {
     
     return (
         <>
         <Nav />
         <Body />
-        
-    
+       
         </>
     )
 }
