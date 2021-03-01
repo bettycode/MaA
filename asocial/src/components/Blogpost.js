@@ -50,7 +50,7 @@ function Blogpost() {
                 </div>
                 <div className="row">
                     <div className="col-md-3">
-                        <div class="card p-3">
+                        <div className="card p-3">
                            <p>title goes here</p>
                         </div>
                     </div>
@@ -67,10 +67,9 @@ function Blogpost() {
                         country={blog.country}
                         author={blog.author}
                         timestamp={blog.timestamp}
-                        // username={blog.user}
-                        // imgName={blog.imgName}
-                        // profilePic={blog.avatar}
+                         
                             />  
+                            
                         )      
                         ))}
                         

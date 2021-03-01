@@ -5,10 +5,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home'
 import Blog from './components/Blog'
-import Message from './components/Message'
 import F from './components/F'
 import Addblog from './components/Addblog'
 import { useStateValue } from './components/StateProvider'
+import BlogId from './components/BlogId';
 
 
 function App() {
@@ -32,11 +32,11 @@ function App() {
             <Route exact path = "/BLOG" >
             <Blog/>
              </Route> 
-             <Route exact path = "/MESSAGE" >
-             <Message />
-             </Route> 
              <Route exact path = "/AddBlog" >
              <Addblog />
+             </Route> 
+             <Route exact path = "/BlogId/:id" >
+             <BlogId />
              </Route> 
              <F />
             </>

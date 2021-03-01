@@ -27,7 +27,7 @@ function Nav() {
 
     }
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light back">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light back">
              <div className ="container">
                 <Link
                     to="/HOME"
@@ -46,13 +46,7 @@ function Nav() {
                                 HOME 
                         </Link>
                     </li>
-                    <li className="nav-item test2">
-                        <Link 
-                            to="/MESSAGE" 
-                            className={ window.location.pathname === "/MESSAGE" ? "nav-link active": "nav-link"} >
-                                MESSAGE
-                        </Link>
-                    </li>
+                   
                     <li className="nav-item test2">
                     <Link 
                             to="/BLOG" className={ window.location.pathname === "/BLOG" ? "nav-link active": "nav-link"} >
