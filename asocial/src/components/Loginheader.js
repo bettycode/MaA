@@ -6,8 +6,8 @@ import pic2 from '../Image/pic2.png'
 function Loginheader() {
     return (
         <div className=" login-header">
-            <nav class="navbar navbar-light  ">
-                <div class="container">
+            <nav className="navbar navbar-light  ">
+                <div className="container">
                     <img src={pic2} alt="img" style={{width:"150px"}}></img>
                    
                 </div>

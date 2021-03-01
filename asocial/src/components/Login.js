@@ -37,7 +37,7 @@ const [state, dispatch] = useStateValue()
                     <div className="col-md-7">
                     <div className="container" style={{textAlign:"center"}}>
                         <h2 style={{textAlign:"center", marginTop:"4rem"}}>Welcome to ASOCIAL!</h2>
-                        <h7>A networking website for showcasing Africian countries in their true and glories state.</h7>
+                        <h6>A networking website for showcasing Africian countries in their true and glories state.</h6>
                         
                     </div>
                     </div>

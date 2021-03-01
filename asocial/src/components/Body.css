@@ -9,7 +9,7 @@ h4{
 }
 .aside{
     margin-top: 1rem;
-    /* background: white; */
+   background: #ffffff26; 
     margin-left: 3rem;
     border-radius: 10px;
     height: 400px;
@@ -21,8 +21,8 @@ h4{
   
 }
 .asideLinks:hover{
-    background: honeydew;
+    background:white;
 }
 .nav-link.active.aside1:hover{
-    background: honeydew;
+    background: white;
 } 
