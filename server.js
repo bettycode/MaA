@@ -25,16 +25,11 @@ const app = express()
 const PORT = process.env.PORT ||8000
 
 const pusher = new Pusher({
-    appId: "1156581",
-    key: "abe1e56f83b980b40655",
-    secret: "7da250470429fe45b681",
-    cluster: "us2",
-    useTLS: true
-    // appId:process.env.PUSHER_APP_ID,
-    // key:process.env.PUSHER_APP_KEY,
-    // secret:process.env.PUSHER_APP_SECRET,
-    // cluster:process.env.PUSHER_APP_CLUSTER,
-    // useTLS:process.env.PUSHER_APP_USETLS
+    appId:process.env.PUSHER_APP_ID,
+    key:process.env.PUSHER_APP_KEY,
+    secret:process.env.PUSHER_APP_SECRET,
+    cluster:process.env.PUSHER_APP_CLUSTER,
+    useTLS:process.env.PUSHER_APP_USETLS
   });
  
   
@@ -48,7 +43,6 @@ app.use(cors())
 //
 
 //db config
-const MONGODB_URI= 'mongodb+srv://user-me:J66oj7xT4Ghqr4jS@cluster0.wi8fg.mongodb.net/Asocial?retryWrites=true&w=majority' //fix heroku!!!!!!
 
 // connection for the images
 const connect1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/posts",{
@@ -121,7 +115,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/posts",{
 })
 
 //connection for blog
-mongoose.connect(MONGODB_URI || "mongodb://localhost/blogs",{
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blogs",{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
