@@ -122,7 +122,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blogs",{
     useUnifiedTopology:true
 })
 //api routs
-app.get('/',(req,res) => res.status(200).send("hello hello"));
+//app.get('/',(req,res) => res.status(200).send("hello hello"));
 
 app.post('/upload/image',upload.single('file'), (req,res) =>{
     res.status(201).send(req.file)
