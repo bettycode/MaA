@@ -9,6 +9,7 @@ import {
   } from "react-router-dom";
 import axios from '../axios'
 import Nav from './Nav'
+import './Blog.css'
 
 
 function BlogId({postId}) {

@@ -10,3 +10,9 @@
     font-family: 'Niconne', cursive;
     color: wheat;
 }
+.blogbody{
+    background: #ffffff;
+    box-shadow: -35px 35px 73px #e0e0e0, 35px -35px 73px #ffffff;
+    margin-bottom: 2rem;
+    padding: 2rem;
+}

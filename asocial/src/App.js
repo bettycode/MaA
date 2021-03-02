@@ -3,8 +3,8 @@ import  { BrowserRouter as Router,Switch, Route } from "react-router-dom";
 import Login from './components/Login'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './components/Home'
-import Blog from './components/Blog'
+import Home from './pages/Home'
+import Blog from './pages/Blog'
 import F from './components/F'
 import Addblog from './components/Addblog'
 import { useStateValue } from './components/StateProvider'

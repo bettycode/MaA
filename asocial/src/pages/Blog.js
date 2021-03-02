@@ -1,6 +1,6 @@
 import React from 'react'
-import Nav from './Nav'
-import Blogpost from './Blogpost'
+import Nav from '../components/Nav'
+import Blogpost from '../components/Blogpost'
 
 
 

@@ -28,7 +28,7 @@ const blog = mongoose.Schema({
     },
   imgName:String,
   avatar:String,
-  timestamp:String,
+  // date:String,
 });
 
 export default  mongoose.model("blogs", blog);
