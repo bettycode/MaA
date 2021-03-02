@@ -5,6 +5,7 @@ import { useStateValue } from "./StateProvider";
 import Pblog from './Pblog'
 import pic0 from '../Image/pic0.gif'
 import {Link } from 'react-router-dom';
+import LI from '../Image/LI.jpg'
 
 
 function Blogpost() {
@@ -50,8 +51,18 @@ function Blogpost() {
                 </div>
                 <div className="row">
                     <div className="col-md-3">
-                        <div className="card p-3">
+                        {/* <div className="card p-3">
                            <p>title goes here</p>
+                           <img src={LI} alt="nature" style={{height:"500px"}}></img>
+                        </div> */}
+                        <div className="card p-3" >
+                        <img src={LI} alt="nature" style={{height:"500px"}}></img>
+                        <div className="card-img-overlay">
+                        <p style={{marginTop:"5rem",paddingLeft: "8px",paddingRight: "8px",fontFamily: "Niconne",fontSize: "larger"}}>Lorem Ipsum is <br/>simply dummy text<br/>
+                         of the printing and typesetting industry.<br/> Lorem Ipsum has
+                          been the industry's standard dummy text ever since the 1500s, when a</p>
+                       
+                        </div>
                         </div>
                     </div>
                     <div className="col-md-9" style={{margin:"3rem 0"}} >

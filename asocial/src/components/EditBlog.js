@@ -17,6 +17,7 @@ function Addblog() {
     const [article,setrArticle] = useState("")
     const [date,setdate] = useState("")
     const {id} = useParams()
+    const [message,setMessage]=useState("")
 
 
     const hundleSubmit =(e)  => {
@@ -37,8 +38,8 @@ function Addblog() {
         setAuthor("")
         setrArticle("")
 
-        axios.post("/blog/add",blogs)
-            .then(res => console.log(res.data))
+        axios.put(`/blog/${id}`,blogs)
+            .then(res => setMessage(res.data))
             .catch(err =>{
                 console.log(err)
             })
@@ -68,7 +69,8 @@ function Addblog() {
                 </div>
                 <div className="col-md-6">
                     <div className="addtitle" style={{marginBottom:"2rem",fontFamily:"monospace",fontWeight:"500"}}>
-                        <h2 style={{fontWeight: "600", color: "#043504d1"}}>Update Blog</h2>
+                        <h2 style={{fontWeight: "600", color: "#043504d1",marginBottom: "2rem"}}>Update Blog</h2>
+                        <span className="message"  style={{padding:"1rem" ,background:" #0080003b"}}>{message}</span>
                     </div>
                     <form onSubmit={hundleSubmit} encType="multipart/form-data" >
                         <div className="form-group">
@@ -113,7 +115,7 @@ function Addblog() {
                            
                             ></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary"style={{background:"rgba(4, 53, 4, 0.82)",border: "rgba(4, 53, 4, 0.82)"}}>Update</button> 
+                        <button type="submit" className="btn btn-outline-success">Update</button> 
                     </form>
             
                 </div>

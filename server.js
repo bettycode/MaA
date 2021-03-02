@@ -250,7 +250,7 @@ app.post('/blog/add',(req,res) =>{
         }else {
             res.status(201).send(data)
         }
-    })
+    }) 
    
 })
 //
@@ -281,7 +281,7 @@ app.put('/blog/:id',(req,res) =>{
 
             blog
                 .save()
-                .then(()=>res.json("the blog is updated"))
+                .then(()=>res.json("The Blog/Article is updated"))
                 .catch(err=>res.status(400).json(`Error:${err}`))
         })
         .catch(err=>res.status(400).json(`Error:${err}`))
