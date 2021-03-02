@@ -16,12 +16,10 @@
 #
 
 ![img](asocial/src/Image/page1.png)
+![img](asocial/src/Image/page4.png) 
 #
-![img](asocial/src/Image/page4.png)
-#
-![img](asocial/src/Image/page5.png)
-# 
-![img](asocial/src/Image/page6.png)
+![img](asocial/src/Image/page5.png)  ![img](asocial/src/Image/page6.png)
+
 
 # Table of Contents
 
