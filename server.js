@@ -42,7 +42,11 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors())
 //
+if (process.env.NODE_ENV === "production") {
 
+    app.use(express.static("asocial/build"));
+
+}
 //db config
 
 // connection for the images
@@ -294,15 +298,11 @@ app.delete('/blog/:id',(req,res) =>{
 
 
 
-if (process.env.NODE_ENV === "production") {
 
-    app.use(express.static("asocial/build"));
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname,'./asocial/build/index.html'));
-     });
-}
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname,'./asocial/build/index.html'));
+ });
  
 //listen port 
 app.listen(PORT,() =>console.log(`listening on localhost:${PORT}`))
