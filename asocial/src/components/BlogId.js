@@ -53,17 +53,18 @@ function BlogId({postId}) {
                     
                     </div>
                     <div className="blogbody">
-                        <h2 style={{textAlign:"center",paddingBottom:"2rem"}}>{title}</h2>
+                        <h1 style={{textAlign:"center",paddingBottom:"2rem"}}>{title}</h1>
                         <p>{description}</p>
-                        <p>{article}</p>
-                        <p> By {author} from {country} </p>
+                        <p style={{paddingBottom:"1rem"}}>{article}</p>
+                        <Link  to={`/BLOG`}>
+                       <button type="submit" className="btn btn-outline-success"style={{ marginBottom:"2rem"}}>Back To Blogs</button>
+                       </Link>
+                        <p style={{fontStyle: "italic",fontWeight: "500",borderTop:" 1px solid gainsboro",paddingTop: "2rem"}}>
+                             By {author} from {country} </p>
                         <p>{new Date(parseInt(date)).toUTCString()}</p>
                        
                         <br/>
-                        <Link  to={`/BLOG`}>
-                       
-                        <button type="submit" className="btn btn-primary"style={{background:"rgba(4, 53, 4, 0.82)",border: "rgba(4, 53, 4, 0.82)", marginBottom:"2rem"}}>Back To Blogs</button>
-                        </Link>
+                      
                         <br/>
                     </div>
             

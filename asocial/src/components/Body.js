@@ -9,6 +9,10 @@ import db from '../firebase'
 import { useStateValue } from "./StateProvider";
 import Widget from './Widget';
 import {Link } from 'react-router-dom';
+import BookIcon from '@material-ui/icons/Book';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import PeopleIcon from '@material-ui/icons/People';
+import InfoIcon from '@material-ui/icons/Info';
 
 
 
@@ -52,7 +56,7 @@ const syncBody = () =>{
     },[])
     return (
         <>
-        <div className="container-fluid " style={{background:"#80808030", minHeight: "100%", paddingBottom: "100px"}}>
+        <div className="container-fluid " style={{background:"rgb(128 128 128 / 6%)", minHeight: "100%", paddingBottom: "100px"}}>
             <div className="row">
                 <div className="col-md-3" style={{width:"200px", 
                     height:"200px"}}>
@@ -64,14 +68,25 @@ const syncBody = () =>{
                         </div>
                         <div className="row">
                             <div className="col-md-8 aside" style={{color:"black",fontWeight:"500"}}>
+                               
+                                <LibraryAddIcon />
+                       
                             <Link 
                                 to="/AddBlog"
-                                className={ window.location.pathname === "/HOME" ? "nav-link active aside1" :"nav-link"  } style={{color:"black",fontWeight:"500"}} >
+                                className={ window.location.pathname === "/HOME" ? "nav-link active aside1" :"nav-link"  } style={{color:"black",fontWeight:"500", transform:" translate(20px, -30px)"}} >
                                     Add Blog 
                             </Link>
-                            <p className="asideLinks">community</p>
-                            <p className="asideLinks">About</p>
-                            <p className="asideLinks">Blogs</p>
+                            <BookIcon />
+                            <Link 
+                                to="/BLOG"
+                                className={ window.location.pathname === "/HOME" ? "nav-link active aside1" :"nav-link"  } style={{color:"black",fontWeight:"500", transform:" translate(20px, -30px)"}} >
+                                    Blogs 
+                            </Link>
+                            <PeopleIcon />
+                            <p className="asideLinks" style={{ transform:" translate(20px, -24px)"}}>community</p>
+                            <InfoIcon />
+                            <p className="asideLinks"  style={{ transform:" translate(20px, -24px)"}} >About</p>
+                            {/* <p className="asideLinks">Blogs</p> */}
                             </div>
                          </div>
                 </div>

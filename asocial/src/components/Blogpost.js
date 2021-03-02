@@ -58,10 +58,11 @@ function Blogpost() {
                         <div className="card p-3" >
                         <img src={LI} alt="nature" style={{height:"500px"}}></img>
                         <div className="card-img-overlay">
-                        <p style={{marginTop:"5rem",paddingLeft: "8px",paddingRight: "8px",fontFamily: "Niconne",fontSize: "larger"}}>Lorem Ipsum is <br/>simply dummy text<br/>
-                         of the printing and typesetting industry.<br/> Lorem Ipsum has
-                          been the industry's standard dummy text ever since the 1500s, when a</p>
-                       
+                        <p style={{marginTop:"8rem",paddingLeft: "8px",paddingRight: "8px",fontFamily: "Niconne",fontSize: "larger"}}>
+                          Your limitation—it’s only your imagination.<br/><br/>
+                          The harder you work for something, the greater you’ll feel when you achieve it.<br/><br/>
+                          Sometimes we’re tested not to show our weaknesses, but to discover our strengths.
+                          </p>
                         </div>
                         </div>
                     </div>

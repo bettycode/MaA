@@ -50,7 +50,7 @@ function Nav() {
                     <li className="nav-item test2">
                     <Link 
                             to="/BLOG" className={ window.location.pathname === "/BLOG" ? "nav-link active": "nav-link"} >
-                                BLOG
+                                BLOGS
                         </Link>
                     </li>
                    
