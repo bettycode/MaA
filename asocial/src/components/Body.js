@@ -99,7 +99,7 @@ const syncBody = () =>{
                         </div>
                        
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3">
                             <Widget />
 
                         </div>

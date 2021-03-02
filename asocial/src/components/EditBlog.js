@@ -1,4 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect}  from 'react'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useParams,
+    Link
+  } from "react-router-dom";
 import Nav from './Nav'
 import axios from '../axios'
 
@@ -8,6 +15,8 @@ function Addblog() {
     const [country,setCountry] = useState("")
     const [author,setAuthor] = useState("")
     const [article,setrArticle] = useState("")
+    const [date,setdate] = useState("")
+    const {id} = useParams()
 
 
     const hundleSubmit =(e)  => {
@@ -35,6 +44,20 @@ function Addblog() {
             })
     }
 
+    useEffect(() => {
+        axios
+            .get(`/blog/${id}`)
+            .then(res =>[
+                setTitle(res.data.title),
+                setDescription(res.data.description),
+                setdate(res.data.date),
+                setCountry(res.data.country),
+                setAuthor(res.data.author),
+                setrArticle(res.data.article)
+            ])
+            .catch(error => console.log(error))
+    },[])
+
   return (
     <div>
            <Nav />
@@ -45,7 +68,7 @@ function Addblog() {
                 </div>
                 <div className="col-md-6">
                     <div className="addtitle" style={{marginBottom:"2rem",fontFamily:"monospace",fontWeight:"500"}}>
-                        <h2 style={{fontWeight: "600", color: "#043504d1"}}>Add New Blog</h2>
+                        <h2 style={{fontWeight: "600", color: "#043504d1"}}>Update Blog</h2>
                     </div>
                     <form onSubmit={hundleSubmit} encType="multipart/form-data" >
                         <div className="form-group">
@@ -90,7 +113,7 @@ function Addblog() {
                            
                             ></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary"style={{background:"rgba(4, 53, 4, 0.82)",border: "rgba(4, 53, 4, 0.82)"}}>Submit</button> 
+                        <button type="submit" className="btn btn-primary"style={{background:"rgba(4, 53, 4, 0.82)",border: "rgba(4, 53, 4, 0.82)"}}>Update</button> 
                     </form>
             
                 </div>

@@ -143,7 +143,7 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
          
                 {comments.map((comments) =>(
                 <>
-                    <div className="row">
+                    <div className="row" key ={comments._id}>
                         <div className="col-md-2">
                           <div className="com1">
                             <Avatar  src={profilePic}/>

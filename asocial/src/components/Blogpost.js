@@ -59,14 +59,17 @@ function Blogpost() {
                         {!blogs.length ? (
                         <img src={pic0} alt="loading..."style={{width:"6rem",display:"block",margin:"0 auto"}}/>
                         ):(
-                        blogs.map((blog,key)=> (
+                        blogs.map((blog)=> (
                             <Pblog 
-                         key={key}
+                            
+                         key={blog._id}
+                         postId={blog._id}
                         title={blog.title}
+                        description={blog.description}
                         article ={blog.article}
                         country={blog.country}
                         author={blog.author}
-                        timestamp={blog.timestamp}
+                        timestamp={blog.date}
                          
                             />  
                             

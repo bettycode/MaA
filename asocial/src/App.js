@@ -9,7 +9,7 @@ import F from './components/F'
 import Addblog from './components/Addblog'
 import { useStateValue } from './components/StateProvider'
 import BlogId from './components/BlogId';
-
+import EditBlog from './components/EditBlog'
 
 function App() {
   const [{user}, dispatch] = useStateValue();
@@ -30,17 +30,20 @@ function App() {
               <Home />
             </Route>  
             <Route exact path = "/BLOG" >
-            <Blog/>
-             </Route> 
-             <Route exact path = "/AddBlog" >
-             <Addblog />
-             </Route> 
-             <Route exact path = "/BlogId/:id" >
-             <BlogId />
-             </Route> 
-             <F />
+              <Blog/>
+            </Route> 
+            <Route exact path = "/AddBlog" >
+              <Addblog />
+            </Route> 
+            <Route exact path = "/blog/:id" >
+              <BlogId />
+            </Route> 
+            <Route exact path = "/update/:id" >
+              <EditBlog />
+            </Route> 
+            <F />
             </>
-           )};  
+          )};  
             
           </Switch>
       </Router>

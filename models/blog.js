@@ -9,6 +9,10 @@ const blog = mongoose.Schema({
       type: String, 
      
     },
+  description: { 
+      type: String,
+      
+    },
   country: { 
       type: String,
       

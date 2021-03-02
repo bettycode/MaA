@@ -226,7 +226,7 @@ app.get('/blog',(req,res) =>{
          .send(err)
         }else{
             data.sort((b,a) =>{
-                return a.timestamp - b.timestamp;
+                return a.date- b.date;
             })
             res.status(200)
             .send(data)
@@ -238,6 +238,7 @@ app.post('/blog/add',(req,res) =>{
     //const dbPost = req.body
     const blog = {
         title: req.body.title,
+        description:req.body. description,
         article:req.body.article,
         country:req.body.country,
         author:req.body.author
@@ -273,6 +274,7 @@ app.put('/blog/:id',(req,res) =>{
     Blog.findByIdAndUpdate(req.params.id)
         .then(blog =>{
             blog.title = req.body.title;
+            blog.description=req.body.description,
             blog.article=req.body.article;
             blog.country=req.body.country;
             blog.author=req.body.author;
