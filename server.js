@@ -6,7 +6,7 @@ import cors from 'cors'
 import multer from 'multer'
 import GridFsStorage from 'multer-gridfs-storage'
 import Grid from 'gridfs-stream'
-//import bodyParser from 'body-parser'
+import bodyParser from 'body-parser'
 import path from 'path'
 import Pusher from 'pusher'
 //import { promises } from 'fs'
@@ -39,6 +39,7 @@ const pusher = new Pusher({
 // middlewheres
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors())
 //
 
@@ -298,7 +299,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("asocial/build"));
 
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname,'asocial','build', 'index.html'));
+        res.sendFile(path.join(__dirname,'./asocial/build/index.html'));
      });
 }
 

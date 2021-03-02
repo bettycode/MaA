@@ -90,7 +90,7 @@ function Addblog() {
                            
                             ></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary"style={{background:"rgba(4, 53, 4, 0.82)",border: "rgba(4, 53, 4, 0.82)"}}>Submit</button> 
+                        <button type="submit" className="btn btn-outline-success">Submit</button> 
                     </form>
             
                 </div>

@@ -45,6 +45,7 @@ Dependencies must be installed to run the application properly:
 * react-router-dom
 * react-scripts
 * web-vitals
+* Neumorphism.io
 
 # Usage
 
