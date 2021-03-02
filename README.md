@@ -18,9 +18,6 @@
 ![img](asocial/src/Image/page1.png)
 #
 ![img](asocial/src/Image/page4.png)
-
-#
-![img](asocial/src/Image/page3.png)
 #
 ![img](asocial/src/Image/page5.png)
 # 
