@@ -7,12 +7,12 @@
 (https://asocial-mysocial.herokuapp.com/)
 
 # Description
-Asocial is a networking website where people share useful information about Africa. As a user when i google any africian country, the websites that comes up are not websites that are hosted by people from that country. The stories of African countries are not told the way developed countries tell their stories, control their own narratives and dictating what the world should really know about them. 
+Asocial is a networking website where people share useful information about Africa.  The stories of African countries are not told the way developed countries tell their stories, controling their own narratives and dictating what the world should really know about them. 
 
 
 The goal is when you google for african countries, Asocial is the first website you will find. Within you will be able to have wealth of informations in the form of blogs, vlogs, posts and much more. 
 
-The africa you will never see in TV!! FROM People who has first hand experience sharing their stories.
+The africa you will never see on TV!! FROM People who has first hand experience sharing their stories.
 
 
 
