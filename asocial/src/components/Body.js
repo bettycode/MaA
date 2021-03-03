@@ -5,7 +5,7 @@ import MessageSend from './MessageSend';
 import Post from './Post';
 import Pusher from 'pusher-js'
 import axios from '../axios'
-import db from '../firebase'
+// import db from '../firebase'
 import { useStateValue } from "./StateProvider";
 import Widget from './Widget';
 import {Link } from 'react-router-dom';
@@ -21,12 +21,8 @@ const pusher = new Pusher('abe1e56f83b980b40655', {
   });
 
 function Body() {
-    // const [profilePic, setProfilePic] = useState('')
     const [{user},dispatch] = useStateValue()
     const [postData, setPostData] = useState([])
-    // const [postComments,setPostComments]=useState([])
-  
-  
 
 const syncBody = () =>{
         axios.get('/retrive/posts')
@@ -86,7 +82,6 @@ const syncBody = () =>{
                             <p className="asideLinks" style={{ transform:" translate(20px, -24px)"}}>community</p>
                             <InfoIcon />
                             <p className="asideLinks"  style={{ transform:" translate(20px, -24px)"}} >About</p>
-                            {/* <p className="asideLinks">Blogs</p> */}
                             </div>
                          </div>
                 </div>

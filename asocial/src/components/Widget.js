@@ -9,7 +9,7 @@ function Widget() {
         height="315" 
         scrolling="no"
         src="https://www.youtube.com/embed/2wKhEEmgzb4" 
-        frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        frameBorder="0"
          allowFullScreen>
 
          </iframe>
@@ -21,7 +21,6 @@ function Widget() {
             frameBorder="0" 
             scrolling="no"
             style={{border:"none",overflow:"hidden"}}
-            //allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
              allowFullScreen>
 
              </iframe>

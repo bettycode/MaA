@@ -22,7 +22,6 @@ function Nav() {
                     user:undefined
                 })
                 history.push("/");//Login
-               // console.log(dispatch)
             }).catch(error => alert(error.message))
 
     }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react'
 
-function Pblog({key,postId , postUserId,title,article, country ,author,username,imgName,profilePic,description,timestamp}) {
+function Pblog({postId ,title,article, country ,author,description,timestamp}) {
     return (
         <div>
             <div className="col-md-12">
@@ -10,7 +10,6 @@ function Pblog({key,postId , postUserId,title,article, country ,author,username,
                    
                    <Link to={`/blog/${postId}`}> <h2 className="card-title" style={{color:"black"}}>{title}</h2></Link>
                     <p className="card-text">{description}</p>
-                    {/* <p className="card-text">{article}</p> */}
                     <p className="card-text" style={{fontStyle: "italic",fontWeight: "500"}}>{author} from {country}</p>
                     <p>{new Date(parseInt(timestamp)).toUTCString()}</p>
                     

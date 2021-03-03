@@ -11,20 +11,8 @@ import LI from '../Image/LI.jpg'
 function Blogpost() {
     const [{user},dispatch] = useStateValue()
     const [blogs, setBlogs] = useState([])
-   
 
-//   const syncBlog  =()=>{
-//       axios.get('/blog')
-//       .then((res) => {
-//        console.log(res.data)
-//        setBlogs(res.data)
-//        console.log(res.data)
-      
-//    })
-//   }
  useEffect(()=> {
- // syncBlog ()
- // console.log( syncBlog ())
     axios.get('/blog')
     .then((res) => {
     console.log(res.data)
@@ -51,10 +39,6 @@ function Blogpost() {
                 </div>
                 <div className="row">
                     <div className="col-md-3">
-                        {/* <div className="card p-3">
-                           <p>title goes here</p>
-                           <img src={LI} alt="nature" style={{height:"500px"}}></img>
-                        </div> */}
                         <div className="card p-3" >
                         <img src={LI} alt="nature" style={{height:"500px"}}></img>
                         <div className="card-img-overlay">

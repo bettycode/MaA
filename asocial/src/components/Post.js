@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import './Post.css'
 import Avatar from '@material-ui/core/Avatar'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp'
@@ -6,14 +6,12 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline'
 import NearMeIcon from '@material-ui/icons/NearMe'
 import axios from '../axios';
 import { useStateValue } from "./StateProvider";
-import Pusher from 'pusher-js'
-import Widget from './Widget';
+
 
 
 
 function Post({profilePic,imgName, username, timestamp, message,postId,key,comments}) {
     const [{user},dispatch] = useStateValue()
-    //const [data ,setData] = useState('')
     const [comment,setComment] = useState([])
 
     const postcomments =(e) =>{
@@ -23,9 +21,7 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
             const postData = {
                     text:comment,
                     postId:postId,
-                   // avatar:user.photoURL,
-                   // Text:comment
-           
+                
                
               }
             console.log(postData )
@@ -54,8 +50,6 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
     return (
         <>
         <div className="col-md-12 post__box">
-           
-                {/* <div className="row"> */}
                     <div className="post__top">
                     <Avatar src={profilePic} className='post__avatar' />
                         <div className="post__topInfo">
@@ -66,7 +60,6 @@ function Post({profilePic,imgName, username, timestamp, message,postId,key,comme
                     <div className="post__bottom">
                          <p>{message}</p>
                     </div>
-                {/* </div>     */}
                     {
                         imgName ? (
                             <div className=" imgName">

@@ -20,8 +20,7 @@ const [state, dispatch] = useStateValue()
         auth
         .signInWithPopup(provider)
         .then(result => {
-               // console.log(result)
-
+             
                 dispatch({
                     type: actionTypes.SET_USER,
                     user: result.user
@@ -46,8 +45,6 @@ const [state, dispatch] = useStateValue()
                        
                             <p style={{textAlign:"center",paddingTop:"2rem",marginBottom:"5rem"}}>New to Asocial? Sign Up!</p>
                         </div>
-                       
-                        {/* <div className="d-grid gap-2 col-6 mx-auto"> */}
                             <div className ="signup">
                             <Link to = "/HOME">
                            
@@ -55,13 +52,9 @@ const [state, dispatch] = useStateValue()
                                 type="submit" onClick={signIn}>  <img src={pic} alt="img" style={{height: "40px",paddingRight: "5px"}}></img>Sign Up in with Google</button>
                             </Link>
                             </div>
-                            
-                        {/* </div> */}
                         <p style={{fontSize:"x-small",padding:"10px",textAlign: "center",color: "gray"}}>
                             By clicking ‘Create account’ or signing up, you agree to the Terms of Use and Privacy Notice.</p>
                     </div>
-                    {/* <div className="col-md-4"></div> */}
-                    
                 </div>
                 <div className="container">
                     <div className="row" style={{textAlign:"center"}}>

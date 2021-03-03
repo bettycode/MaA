@@ -13,10 +13,6 @@ function MessageSend() {
     const [image, setImage] = useState(null)
     const [imageUrl,setImageUrl] =useState('')
     const [{user},dispatch] = useStateValue()
-   
-    
-   
-    //console.log(user)
 
     const handleChange =(e) => {
         if(e.target.files[0]){
@@ -103,17 +99,6 @@ function MessageSend() {
                         onChange={(e) =>setInput(e.target.value)}/>
 
                     </div>
-                    {/* <div className="col-md-3">
-                        <div className="form-group" >
-                            <input type="file" 
-                            id="exampleFormControlFile1"
-                            
-                            className="form-control-file fileSelector"
-                            onChange={handleChange}/>
-                        
-                        </div>    
-
-                    </div> */}
                     <div className="col-md-1">
                         <button
                         style={{ height: "0",
