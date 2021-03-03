@@ -9,12 +9,11 @@ import Grid from 'gridfs-stream'
 import bodyParser from 'body-parser'
 import path from 'path'
 import Pusher from 'pusher'
-//import { promises } from 'fs'
-import mongoPosts from './models/post.js'
-import Blog from './models/blog.js'
-//import { title } from "process"
 
 
+// blog routs
+import blogapi from './routes/blogapi.js'
+import postapi from './routes/postapi.js'
 
 
 //storage our image
@@ -24,6 +23,7 @@ Grid.mongo = mongoose.mongo
 const app = express()
 const PORT = process.env.PORT ||8000
 
+//pusher keys
 const pusher = new Pusher({
     appId:process.env.PUSHER_APP_ID,
     key:process.env.PUSHER_APP_KEY,
@@ -55,7 +55,7 @@ const connect1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb:/
     useNewUrlParser:true,
     useUnifiedTopology:true
 });
-
+// triggering change in post 
 mongoose.connection.once("open", () => {
     console.log("main: DB Connected");
   
@@ -92,7 +92,7 @@ connect1.once('open',() => {
     gfs = Grid(connect1.db,mongoose.mongo)
     gfs.collection('images')
 });
-
+//storage
 const storage = new GridFsStorage({
     url:process.env.MONGODB_URI ,
     file:(req,file) => {
@@ -126,179 +126,19 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blogs",{
     useUnifiedTopology:true
 })
 //api routs
-//app.get('/',(req,res) => res.status(200).send("hello hello"));
 
-app.post('/upload/image',upload.single('file'), (req,res) =>{
-    res.status(201).send(req.file)
-});
-
-app.post('/upload/post',(req,res) =>{
-    const dbPost = req.body
-
-    console.log(dbPost)
-    mongoPosts.create(dbPost, (err, data) =>{
-        if(err){
-            res.status(500).send(err)
-        }else {
-            res.status(201).send(data)
-        }
-    })
-})
-
-app.get('/retrive/posts',(req,res) => {
-    mongoPosts.find((err,data) => {
-       if(err) {
-        res.status(500)
-        .send(err)
-       }else{
-           data.sort((b,a) =>{
-               return a.timestamp - b.timestamp;
-           })
-           res.status(200)
-           .send(data)
-       }
-    })
-})
-//comment
-app.put('/comments',(req,res) =>{
-    //console.dir( req.body)
-    const comment = {
-        text:req.body.text,
-        PostedBy:req.body._id
-    }
-    //console.log("the is the comment" + comment.text)
-    mongoPosts.findByIdAndUpdate(req.body.postId,
-        {
-        $push:{comments:comment}
-        },{
-        new:true,returnOriginal:false
-    })
-    .populate("comments.PostedBy","_id name")
-    //.populate("comments.Text","comments")
-    .populate("PostedBy","_id name")
-    .exec((err,post)=>{
-        console.log(post)
-        if(err){
-            return res.status(422).json({error:err})
-        }else{
-            res.json({
-                key:post._id,
-                postId:post._id,
-                PostedBy:post.PostedBy,
-                postUserId:post.uid,
-                message:post.text,                              
-                comments:post.comments,
-                timestamp:post.timestamp,
-                username:post.user,
-                imgName:post.imgName,
-                profilePic:post.avatar
-            })
-        }
-    })
-})
-
-//filter
-
-app.get ('/retrive/images/single', (req, res) =>{
-    gfs.files.findOne({filename:req.query.name},(err,file) =>{
-        if(err) {
-            res.status(500)
-            .send(err)
-        }else {
-            if(!file || file.length === 0) {
-                res.status(404).json({err:'file not found'})
-            }else {
-                const readstream = gfs.createReadStream(file.filename);
-                readstream.pipe(res);
-            }
-        }
-    })
-})
+//post api
+ app.post('/upload/image',upload.single('file'), (req,res) =>{
+     res.status(201).send(req.file)
+ });
+//post api
+app.use("/upload/post",postapi)
+app.use("/retrive/posts",postapi)
+app.use("/comments",postapi)
+app.use("/retrive/images/single",postapi)
 //
 //blog api
-app.get("/blog/test", (req, res) => res.json({ msg: "Posts Works" }));
-
-app.get('/blog',(req,res) =>{
-    Blog.find((err,data) => {
-        if(err) {
-         res.status(500)
-         .send(err)
-        }else{
-            data.sort((b,a) =>{
-                return a.date- b.date;
-            })
-            res.status(200)
-            .send(data)
-        }
-    })  
-})
-//
-app.post('/blog/add',(req,res) =>{
-    //const dbPost = req.body
-    const blog = {
-        title: req.body.title,
-        description:req.body. description,
-        article:req.body.article,
-        country:req.body.country,
-        author:req.body.author
-    }
-    // console.log(dbPost)
-    Blog.create(blog   ,(err, data) =>{
-        if(err){
-            res.status(500).send(err)
-        }else {
-            res.status(201).send(data)
-        }
-    }) 
-   
-})
-//
-app.get('/blog/:id',(req,res) =>{
-    console.log(req.params.id);
-    const dbPost = req.params.id;
-    console.log(dbPost)
-    Blog.findById(dbPost,(err, data)=>{
-        if(err){
-            res.status(500).send(err)
-        }else {
-            res.status(201).send(data)
-        }
-    })
-      
-})
-//
-//
-app.put('/blog/:id',(req,res) =>{
-  //console.log(res.body)
-    Blog.findByIdAndUpdate(req.params.id)
-        .then(blog =>{
-            blog.title = req.body.title;
-            blog.description=req.body.description,
-            blog.article=req.body.article;
-            blog.country=req.body.country;
-            blog.author=req.body.author;
-
-            blog
-                .save()
-                .then(()=>res.json("The Blog/Article is updated"))
-                .catch(err=>res.status(400).json(`Error:${err}`))
-        })
-        .catch(err=>res.status(400).json(`Error:${err}`))
-   
-})
-//
-//
-app.delete('/blog/:id',(req,res) =>{
-  
-    Blog.findByIdAndDelete( req.params.id)
-        .then(()=>res.json("The bdlog is article is deleted"))
-        .catch(err=>res.status(400).json(`Error:${err}`))
-})
-//
-
-
-
-
+app.use("/blog",blogapi)
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname,'./asocial/build/index.html'));

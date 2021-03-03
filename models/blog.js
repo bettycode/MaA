@@ -31,5 +31,5 @@ const blog = mongoose.Schema({
   // date:String,
 });
 
-export default  mongoose.model("blogs", blog);
+export default mongoose.model("blogs", blog);
 
