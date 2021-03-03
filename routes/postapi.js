@@ -5,12 +5,6 @@ const router = express.Router()
 
 
 
-//api routs
-
-// router.post('/upload/image',upload.single('file'), (req,res) =>{
-//     res.status(201).send(req.file)
-// });
-
 router.post('/upload/post',(req,res) =>{
     const dbPost = req.body
 
@@ -40,12 +34,11 @@ router.get('/retrive/posts',(req,res) => {
 })
 //comment
 router.put('/comments',(req,res) =>{
-    //console.dir( req.body)
+ 
     const comment = {
         text:req.body.text,
         PostedBy:req.body._id
     }
-    //console.log("the is the comment" + comment.text)
     Posts.findByIdAndUpdate(req.body.postId,
         {
         $push:{comments:comment}
@@ -53,7 +46,6 @@ router.put('/comments',(req,res) =>{
         new:true,returnOriginal:false
     })
     .populate("comments.PostedBy","_id name")
-    //.populate("comments.Text","comments")
     .populate("PostedBy","_id name")
     .exec((err,post)=>{
         console.log(post)
