@@ -5,9 +5,6 @@ import Blog from '../models/blog.js'
 const router = express.Router()
 
 
-
-
-
 //blog api
 
 router.get("/blog/test", (req, res) => res.json({ msg: "Posts Works" }));
@@ -53,7 +50,6 @@ router.get('/blog/:id',(req,res) =>{
     })
 })
 //
-//
 router.put('/blog/:id',(req,res) =>{
     const dbPost = req.body
 
@@ -67,7 +63,6 @@ router.put('/blog/:id',(req,res) =>{
     })
 })
 //
-//
 router.delete('/blog/:id',(req,res) =>{
   
     Blog.findById({ _id: req.params.id }, (err, data) =>{
@@ -78,5 +73,5 @@ router.delete('/blog/:id',(req,res) =>{
         }
     })
 })
-// //
+
 export default router;
